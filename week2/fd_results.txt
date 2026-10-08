@@ -1,111 +1,162 @@
-CREATE VIEW
+CIT 408 - PostgreSQL FD checks captured 2026-10-08 07:32 UTC
+Server container: pg18; database: coralbay; staging table unchanged
+
+==== FD01: work_order_no -> open_date [partial] ====
  work_order_no | distinct_values 
 ---------------+-----------------
 (0 rows)
 
+==== FD02: work_order_no -> close_date [partial] ====
  work_order_no | distinct_values 
 ---------------+-----------------
 (0 rows)
 
+==== FD03: work_order_no -> truck_id [partial] ====
  work_order_no | distinct_values 
 ---------------+-----------------
 (0 rows)
 
+==== FD04: work_order_no -> depot_code [partial] ====
  work_order_no | distinct_values 
 ---------------+-----------------
 (0 rows)
 
+==== FD05: work_order_no -> mechanic_id [partial] ====
  work_order_no | distinct_values 
 ---------------+-----------------
 (0 rows)
 
+==== FD06: work_order_no -> labor_hours [partial] ====
  work_order_no | distinct_values 
 ---------------+-----------------
 (0 rows)
 
+==== FD07: work_order_no -> problem_description [partial] ====
  work_order_no | distinct_values 
 ---------------+-----------------
 (0 rows)
 
+==== FD08: truck_id -> truck_vin [transitive chain] ====
  truck_id | distinct_values 
 ----------+-----------------
 (0 rows)
 
+==== FD09: truck_id -> truck_make [transitive chain] ====
  truck_id | distinct_values 
 ----------+-----------------
 (0 rows)
 
+==== FD10: truck_id -> truck_model [transitive chain] ====
  truck_id | distinct_values 
 ----------+-----------------
 (0 rows)
 
+==== FD11: truck_id -> truck_year [transitive chain] ====
  truck_id | distinct_values 
 ----------+-----------------
 (0 rows)
 
+==== FD12: depot_code -> depot_name [transitive chain] ====
  depot_code | distinct_values 
 ------------+-----------------
 (0 rows)
 
+==== FD13: depot_code -> depot_city [transitive chain] ====
  depot_code | distinct_values 
 ------------+-----------------
 (0 rows)
 
+==== FD14: depot_code -> depot_phone [transitive chain; data conflict] ====
  depot_code | distinct_values 
 ------------+-----------------
  DEP-FLL    |               2
 (1 row)
 
+==== FD15: mechanic_id -> mechanic_name [transitive chain] ====
  mechanic_id | distinct_values 
 -------------+-----------------
 (0 rows)
 
+==== FD16: mechanic_id -> mechanic_cert_level [transitive chain] ====
  mechanic_id | distinct_values 
 -------------+-----------------
 (0 rows)
 
+==== FD17: mechanic_cert_level -> cert_hourly_rate [transitive chain] ====
  mechanic_cert_level | distinct_values 
 ---------------------+-----------------
 (0 rows)
 
+==== FD18: work_order_no, part_line_no -> part_code [full; see minimality checks] ====
  work_order_no | part_line_no | distinct_values 
 ---------------+--------------+-----------------
 (0 rows)
 
+==== FD19: work_order_no, part_line_no -> part_qty [full; see minimality checks] ====
  work_order_no | part_line_no | distinct_values 
 ---------------+--------------+-----------------
 (0 rows)
 
+==== FD20: part_code -> part_name [transitive chain] ====
  part_code | distinct_values 
 -----------+-----------------
 (0 rows)
 
+==== FD21: part_code -> part_unit_cost [transitive chain] ====
  part_code | distinct_values 
 -----------+-----------------
 (0 rows)
 
+==== FD22: part_code -> supplier_id [transitive chain] ====
  part_code | distinct_values 
 -----------+-----------------
 (0 rows)
 
+==== FD23: supplier_id -> supplier_name [transitive chain] ====
  supplier_id | distinct_values 
 -------------+-----------------
 (0 rows)
 
+==== FD24: supplier_id -> supplier_phone [transitive chain] ====
  supplier_id | distinct_values 
 -------------+-----------------
 (0 rows)
 
+==== KEY_UNIQUENESS: A 1NF key cannot repeat. ====
  work_order_no | part_line_no | occurrences 
 ---------------+--------------+-------------
 (0 rows)
 
- depot_code |  depot_phone   | work_order_count |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          affected_orders                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-------------+----------------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- DEP-FLL    | (954) 555-0118 |              266 | WO-50004, WO-50008, WO-50018, WO-50021, WO-50030, WO-50048, WO-50050, WO-50054, WO-50057, WO-50061, WO-50063, WO-50067, WO-50073, WO-50082, WO-50088, WO-50093, WO-50098, WO-50110, WO-50115, WO-50121, WO-50125, WO-50130, WO-50134, WO-50135, WO-50137, WO-50142, WO-50143, WO-50148, WO-50149, WO-50162, WO-50165, WO-50167, WO-50169, WO-50171, WO-50174, WO-50177, WO-50181, WO-50185, WO-50189, WO-50191, WO-50199, WO-50202, WO-50213, WO-50217, WO-50219, WO-50221, WO-50228, WO-50241, WO-50243, WO-50246, WO-50250, WO-50256, WO-50257, WO-50261, WO-50262, WO-50266, WO-50267, WO-50271, WO-50272, WO-50279, WO-50282, WO-50284, WO-50289, WO-50290, WO-50291, WO-50292, WO-50294, WO-50295, WO-50301, WO-50305, WO-50311, WO-50314, WO-50322, WO-50324, WO-50327, WO-50328, WO-50329, WO-50330, WO-50331, WO-50334, WO-50335, WO-50337, WO-50338, WO-50344, WO-50346, WO-50349, WO-50350, WO-50353, WO-50354, WO-50355, WO-50360, WO-50365, WO-50367, WO-50372, WO-50383, WO-50387, WO-50392, WO-50393, WO-50395, WO-50397, WO-50401, WO-50405, WO-50407, WO-50408, WO-50410, WO-50414, WO-50418, WO-50428, WO-50438, WO-50444, WO-50446, WO-50454, WO-50460, WO-50462, WO-50464, WO-50467, WO-50468, WO-50473, WO-50480, WO-50490, WO-50491, WO-50499, WO-50500, WO-50508, WO-50509, WO-50515, WO-50522, WO-50523, WO-50524, WO-50526, WO-50531, WO-50548, WO-50561, WO-50566, WO-50569, WO-50579, WO-50585, WO-50592, WO-50594, WO-50597, WO-50600, WO-50601, WO-50613, WO-50615, WO-50621, WO-50632, WO-50634, WO-50637, WO-50643, WO-50648, WO-50652, WO-50656, WO-50659, WO-50660, WO-50665, WO-50669, WO-50670, WO-50680, WO-50683, WO-50685, WO-50687, WO-50688, WO-50689, WO-50691, WO-50693, WO-50704, WO-50708, WO-50709, WO-50711, WO-50714, WO-50715, WO-50717, WO-50719, WO-50721, WO-50722, WO-50725, WO-50727, WO-50728, WO-50731, WO-50734, WO-50735, WO-50737, WO-50741, WO-50742, WO-50745, WO-50749, WO-50752, WO-50758, WO-50759, WO-50760, WO-50764, WO-50767, WO-50776, WO-50785, WO-50814, WO-50821, WO-50825, WO-50829, WO-50830, WO-50832, WO-50836, WO-50839, WO-50845, WO-50854, WO-50856, WO-50859, WO-50863, WO-50865, WO-50870, WO-50873, WO-50878, WO-50881, WO-50884, WO-50888, WO-50893, WO-50899, WO-50902, WO-50906, WO-50907, WO-50909, WO-50915, WO-50919, WO-50928, WO-50934, WO-50946, WO-50950, WO-50955, WO-50957, WO-50959, WO-50965, WO-50966, WO-50969, WO-50973, WO-50974, WO-50978, WO-50980, WO-50987, WO-50993, WO-50997, WO-51002, WO-51005, WO-51009, WO-51020, WO-51024, WO-51026, WO-51032, WO-51033, WO-51045, WO-51047, WO-51051, WO-51053, WO-51055, WO-51059, WO-51067, WO-51074, WO-51077, WO-51078, WO-51080, WO-51083, WO-51085, WO-51087, WO-51088, WO-51089, WO-51093, WO-51095, WO-51096
- DEP-FLL    | (954) 555-0181 |                2 | WO-50041, WO-50047
+==== KEY_NULLS: Both components of the 1NF composite key must be non-NULL. ====
+ populated_lines | null_key_components 
+-----------------+---------------------
+            2258 |                   0
+(1 row)
+
+==== PART_SLOTS: Confirms only numbered slots 1-4 are used; totals should sum to 2,258. ====
+ part_line_no | populated_lines 
+--------------+-----------------
+            1 |            1100
+            2 |             714
+            3 |             330
+            4 |             114
+(4 rows)
+
+==== DEPOT_PHONE_COUNTS: Frequency evidence supporting a PROVISIONAL canonical-phone rule. ====
+ depot_code |  depot_phone   | work_order_count 
+------------+----------------+------------------
+ DEP-FLL    | (954) 555-0118 |              266
+ DEP-FLL    | (954) 555-0181 |                2
 (2 rows)
 
+==== DEPOT_AFFECTED: Lists anomalous work orders; verify the phone against the depot master record. ====
+ work_order_no | depot_code |  depot_phone   
+---------------+------------+----------------
+ WO-50041      | DEP-FLL    | (954) 555-0181
+ WO-50047      | DEP-FLL    | (954) 555-0181
+(2 rows)
+
+==== QTY_BY_ORDER: Counterexamples to work_order_no alone determining part_qty (FD19 minimality). ====
  work_order_no | quantity_variants 
 ---------------+-------------------
  WO-50001      |                 2
@@ -120,6 +171,7 @@ CREATE VIEW
  WO-50015      |                 3
 (10 rows)
 
+==== QTY_BY_SLOT: Counterexamples to part_line_no alone determining part_qty (FD19 minimality). ====
  part_line_no | quantity_variants 
 --------------+-------------------
             1 |                 4
@@ -128,6 +180,7 @@ CREATE VIEW
             4 |                 4
 (4 rows)
 
+==== CODE_BY_ORDER: Counterexamples to work_order_no alone determining part_code (FD18 minimality). ====
  work_order_no | part_variants 
 ---------------+---------------
  WO-50001      |             2
@@ -142,6 +195,7 @@ CREATE VIEW
  WO-50012      |             2
 (10 rows)
 
+==== CODE_BY_SLOT: Counterexamples to part_line_no alone determining part_code (FD18 minimality). ====
  part_line_no | part_variants 
 --------------+---------------
             1 |            24
@@ -150,6 +204,7 @@ CREATE VIEW
             4 |            24
 (4 rows)
 
+==== TRUCK_DEPOT: If rows appear, truck_id does not determine depot_code; depot belongs on WORK_ORDER. ====
  truck_id | depots 
 ----------+--------
  TRK-201  |      4
